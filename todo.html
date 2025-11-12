@@ -1,0 +1,2457 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productivity Pro - All-in-One Task Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #6C63FF;
+            --primary-light: #8A84FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --light: #F8F9FA;
+            --dark: #343A40;
+            --gray: #6C757D;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+            --bg-color: #f5f7fa;
+            --card-bg: white;
+            --text-color: #343A40;
+            --border-color: #e9ecef;
+        }
+
+        .default-theme {
+            --primary: #6C63FF;
+            --primary-light: #8A84FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --light: #F8F9FA;
+            --dark: #343A40;
+            --gray: #6C757D;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #f5f7fa;
+            --card-bg: white;
+            --text-color: #343A40;
+            --border-color: #e9ecef;
+        }
+
+        .dark-theme {
+            --primary: #8A84FF;
+            --primary-light: #6C63FF;
+            --secondary: #FF6584;
+            --accent: #36D1DC;
+            --light: #343A40;
+            --dark: #F8F9FA;
+            --gray: #ADB5BD;
+            --success: #28A745;
+            --warning: #FFC107;
+            --danger: #DC3545;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-color: #F8F9FA;
+            --border-color: #343A40;
+        }
+
+        .nature-theme {
+            --primary: #4CAF50;
+            --primary-light: #66BB6A;
+            --secondary: #FF9800;
+            --accent: #8BC34A;
+            --light: #E8F5E9;
+            --dark: #1B5E20;
+            --gray: #757575;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #E8F5E9;
+            --card-bg: white;
+            --text-color: #1B5E20;
+            --border-color: #C8E6C9;
+        }
+
+        .ocean-theme {
+            --primary: #2196F3;
+            --primary-light: #64B5F6;
+            --secondary: #FF5722;
+            --accent: #00BCD4;
+            --light: #E3F2FD;
+            --dark: #0D47A1;
+            --gray: #757575;
+            --success: #2196F3;
+            --warning: #FF9800;
+            --danger: #F44336;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #E3F2FD;
+            --card-bg: white;
+            --text-color: #0D47A1;
+            --border-color: #BBDEFB;
+        }
+
+        .sunset-theme {
+            --primary: #FF6B6B;
+            --primary-light: #FF8E8E;
+            --secondary: #4ECDC4;
+            --accent: #FFD166;
+            --light: #FFF5F5;
+            --dark: #2D3047;
+            --gray: #6B7A8F;
+            --success: #4ECDC4;
+            --warning: #FFD166;
+            --danger: #FF6B6B;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #FFF5F5;
+            --card-bg: white;
+            --text-color: #2D3047;
+            --border-color: #FFE0E0;
+        }
+
+        .forest-theme {
+            --primary: #2E8B57;
+            --primary-light: #3CB371;
+            --secondary: #8FBC8F;
+            --accent: #DAA520;
+            --light: #F5FFFA;
+            --dark: #2F4F4F;
+            --gray: #708090;
+            --success: #2E8B57;
+            --warning: #DAA520;
+            --danger: #DC143C;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #F5FFFA;
+            --card-bg: white;
+            --text-color: #2F4F4F;
+            --border-color: #E0F0E0;
+        }
+
+        .berry-theme {
+            --primary: #9C27B0;
+            --primary-light: #BA68C8;
+            --secondary: #FF4081;
+            --accent: #7C4DFF;
+            --light: #F3E5F5;
+            --dark: #4A148C;
+            --gray: #8E8E8E;
+            --success: #7C4DFF;
+            --warning: #FF4081;
+            --danger: #E91E63;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #F3E5F5;
+            --card-bg: white;
+            --text-color: #4A148C;
+            --border-color: #E1BEE7;
+        }
+
+        .coffee-theme {
+            --primary: #795548;
+            --primary-light: #A1887F;
+            --secondary: #D7CCC8;
+            --accent: #8D6E63;
+            --light: #EFEBE9;
+            --dark: #3E2723;
+            --gray: #8D6E63;
+            --success: #5D4037;
+            --warning: #A1887F;
+            --danger: #4E342E;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --bg-color: #EFEBE9;
+            --card-bg: white;
+            --text-color: #3E2723;
+            --border-color: #D7CCC8;
+        }
+
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+            min-height: 100vh;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            margin-bottom: 30px;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .logo h1 {
+            font-weight: 700;
+            font-size: 28px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--danger);
+            color: white;
+        }
+
+        .btn-danger:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
+            animation: slideUp 0.8s ease;
+        }.left-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .calendar-section, .timer-section, .analytics-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .section-header h2 {
+            font-size: 22px;
+            color: var(--text-color);
+        }
+
+        .calendar-nav {
+            display: flex;
+            gap: 10px;
+        }
+
+        .calendar-nav button {
+            background: var(--light);
+            border: none;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .calendar-nav button:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: 600;
+            color: var(--gray);
+            padding: 10px 0;
+        }
+
+        .calendar-day {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+            color: var(--text-color);
+        }
+
+        .calendar-day:hover {
+            background: var(--light);
+        }
+
+        .calendar-day.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .calendar-day.has-event::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--secondary);
+        }
+
+        .events-list {
+            margin-top: 20px;
+        }
+
+        .events-list h3 {
+            margin-bottom: 15px;
+            font-size: 18px;
+            color: var(--text-color);
+        }
+
+        .event-item {
+            padding: 12px 15px;
+            background: var(--light);
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .event-time {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .event-title {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .event-category {
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .category-work {
+            background: rgba(108, 99, 255, 0.1);
+            color: var(--primary);
+        }
+
+        .category-personal {
+            background: rgba(255, 101, 132, 0.1);
+            color: var(--secondary);
+        }
+
+        .timer-display {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .timer-circle {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary) 0%, var(--light) 0%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: var(--shadow);
+        }
+
+        .timer-circle::before {
+            content: '';
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: var(--card-bg);
+        }
+
+        .timer-text {
+            position: relative;
+            z-index: 1;
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .timer-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timer-mode-selector {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .mode-btn {
+            padding: 8px 15px;
+            background: var(--light);
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .mode-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .analytics-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .analytics-card {
+            background: var(--light);
+            border-radius: var(--radius);
+            padding: 15px;
+            text-align: center;
+        }
+
+        .analytics-value {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--primary);
+        }
+
+        .analytics-label {
+            font-size: 14px;
+            color: var(--gray);
+        }
+
+        .tasks-section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 25px;
+            box-shadow: var(--shadow);
+        }
+
+        .tasks-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }.tasks-header h2 {
+            font-size: 22px;
+            color: var(--text-color);
+        }
+
+        .task-filters {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 15px;
+            background: var(--light);
+            border: none;
+            border-radius: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-color);
+        }
+
+        .filter-btn.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .task-input-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .task-input {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .task-input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .add-task-btn {
+            padding: 15px 25px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-task-btn:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .task-list {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
+        }
+
+        .task-item {
+            padding: 15px;
+            border-radius: var(--radius);
+            margin-bottom: 15px;
+            background: var(--light);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            animation: slideIn 0.5s ease;
+            transition: var(--transition);
+            cursor: grab;
+        }
+
+        .task-item:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow);
+        }
+
+        .task-item.dragging {
+            opacity: 0.5;
+        }
+
+        .task-checkbox {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            border: 2px solid var(--gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .task-checkbox.checked {
+            background: var(--success);
+            border-color: var(--success);
+            color: white;
+        }
+
+        .task-content {
+            flex: 1;
+        }
+
+        .task-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .task-title.completed {
+            text-decoration: line-through;
+            color: var(--gray);
+        }
+
+        .task-meta {
+            display: flex;
+            gap: 15px;
+            font-size: 13px;
+            color: var(--gray);
+        }
+
+        .task-priority {
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .priority-high {
+            background: rgba(220, 53, 69, 0.1);
+            color: var(--danger);
+        }
+
+        .priority-medium {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning);
+        }
+
+        .priority-low {
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+        }
+
+        .task-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .task-action-btn {
+            background: transparent;
+            border: none;
+            color: var(--gray);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .task-action-btn:hover {
+            color: var(--primary);
+        }
+
+        .time-tracker {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .time-tracker-btn {
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tracked-time {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        .task-timer {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+            padding: 8px;
+            background: rgba(108, 99, 255, 0.1);
+            border-radius: 8px;
+            font-size: 14px;
+        }
+
+        .task-timer.hidden {
+            display: none;
+        }
+
+        .task-timer-display {
+            font-weight: 600;
+            color: var(--primary);
+        }
+
+        .stopwatch {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .stopwatch-display {
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            margin: 15px 0;
+            color: var(--primary);
+        }
+
+        .stopwatch-controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 20px;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+            animation: slideIn 0.5s ease;
+            border-left: 4px solid var(--primary);
+            color: var(--text-color);
+        }
+
+        .notification.hidden {
+            display: none;
+        }
+
+        .notification-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: var(--shadow);
+            animation: slideUp 0.3s ease;
+            color: var(--text-color);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: var(--text-color);
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--gray);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius);
+            font-size: 16px;
+            transition: var(--transition);
+            background: var(--card-bg);
+            color: var(--text-color);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 25px;
+        }
+
+        .theme-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .theme-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            padding: 10px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .theme-option:hover {
+            background: var(--light);
+        }
+
+        .theme-option.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        .theme-preview {
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            padding: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .profile-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }.profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 32px;
+        }
+
+        .profile-details {
+            flex: 1;
+        }
+
+        .profile-name {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .profile-title {
+            color: var(--gray);
+            font-size: 16px;
+        }
+
+        @media (max-width: 1200px) {
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .left-panel {
+                grid-template-columns: 1fr 1fr;
+                display: grid;
+            }
+            
+            .theme-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .left-panel {
+                grid-template-columns: 1fr;
+            }
+            
+            .analytics-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .theme-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="default-theme">
+    <div class="container">
+        <header>
+            <div class="logo">
+                <i class="fas fa-tasks"></i>
+                <h1>Productivity Pro</h1>
+            </div>
+            <div class="header-controls">
+                <button class="btn btn-outline" id="settings-btn"><i class="fas fa-cog"></i> Settings</button>
+                <button class="btn btn-primary" id="profile-btn"><i class="fas fa-user"></i> Profile</button>
+            </div>
+        </header>
+
+        <div class="main-content">
+            <div class="left-panel">
+                <div class="calendar-section">
+                    <div class="section-header">
+                        <h2 id="calendar-month-year">October 2023</h2>
+                        <div class="calendar-nav">
+                            <button id="prev-month"><i class="fas fa-chevron-left"></i></button>
+                            <button id="next-month"><i class="fas fa-chevron-right"></i></button>
+                        </div>
+                    </div>
+                    <div class="calendar-grid">
+                        <div class="calendar-day-header">Sun</div>
+                        <div class="calendar-day-header">Mon</div>
+                        <div class="calendar-day-header">Tue</div>
+                        <div class="calendar-day-header">Wed</div>
+                        <div class="calendar-day-header">Thu</div>
+                        <div class="calendar-day-header">Fri</div>
+                        <div class="calendar-day-header">Sat</div>
+                        
+                        <!-- Calendar days will be generated by JavaScript -->
+                    </div>
+                    <div class="events-list">
+                        <h3 id="selected-date-events">Today's Events</h3>
+                        <div id="events-container">
+                            <!-- Events will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timer-section">
+                    <div class="section-header">
+                        <h2>Focus Timer</h2>
+                    </div>
+                    <div class="timer-mode-selector">
+                        <button class="mode-btn active" data-mode="pomodoro">Pomodoro</button>
+                        <button class="mode-btn" data-mode="short-break">Short Break</button>
+                        <button class="mode-btn" data-mode="long-break">Long Break</button>
+                    </div>
+                    <div class="timer-display">
+                        <div class="timer-circle">
+                            <div class="timer-text">25:00</div>
+                        </div>
+                    </div>
+                    <div class="timer-controls">
+                        <button class="timer-btn btn-primary" id="start-timer">
+                            <i class="fas fa-play"></i> Start
+                        </button>
+                        <button class="timer-btn btn-outline" id="pause-timer">
+                            <i class="fas fa-pause"></i> Pause
+                        </button>
+                        <button class="timer-btn btn-outline" id="reset-timer">
+                            <i class="fas fa-redo"></i> Reset
+                        </button>
+                    </div>
+                    
+                    <div class="stopwatch">
+                        <div class="section-header">
+                            <h2>Workout Stopwatch</h2>
+                        </div>
+                        <div class="stopwatch-display">00:00:00</div>
+                        <div class="stopwatch-controls">
+                            <button class="timer-btn btn-primary" id="start-stopwatch">
+                                <i class="fas fa-play"></i> Start
+                            </button>
+                            <button class="timer-btn btn-outline" id="pause-stopwatch">
+                                <i class="fas fa-pause"></i> Pause
+                            </button>
+                            <button class="timer-btn btn-outline" id="reset-stopwatch">
+                                <i class="fas fa-redo"></i> Reset
+                            </button>
+                            <button class="timer-btn btn-outline" id="lap-stopwatch">
+                                <i class="fas fa-flag"></i> Lap
+                            </button>
+                        </div>
+                        <div id="laps-container" style="margin-top: 15px; max-height: 150px; overflow-y: auto;"></div>
+                    </div>
+                </div>
+
+                <div class="analytics-section">
+                    <div class="section-header">
+                        <h2>Productivity Analytics</h2>
+                    </div>
+                    <div class="analytics-grid">
+                        <div class="analytics-card">
+                            <div class="analytics-value" id="total-tasks">12</div>
+                            <div class="analytics-label">Total Tasks</div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-value" id="completed-tasks">8</div>
+                            <div class="analytics-label">Completed</div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-value" id="pending-tasks">4</div>
+                            <div class="analytics-label">Pending</div>
+                        </div>
+                        <div class="analytics-card">
+                            <div class="analytics-value" id="focus-time">8h 42m</div>
+                            <div class="analytics-label">Focus Time</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tasks-section">
+                <div class="tasks-header">
+                    <h2>My Tasks</h2>
+                    <div class="task-filters">
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="pending">Pending</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                <div class="task-input-container">
+                    <input type="text" class="task-input" placeholder="Add a new task...">
+                    <button class="add-task-btn"><i class="fas fa-plus"></i> Add Task</button>
+                </div>
+                <div class="task-list">
+                    <!-- Task items will be generated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div><div class="notification hidden">
+        <div class="notification-icon">
+            <i class="fas fa-bell"></i>
+        </div>
+        <div class="notification-content">
+            <div class="notification-title">Meeting Reminder</div>
+            <div class="notification-message">Team meeting starts in 15 minutes</div>
+        </div>
+    </div>
+
+    <!-- Add Task Modal -->
+    <div class="modal" id="task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Add New Task</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="task-form">
+                <input type="hidden" id="task-date" value="">
+                <div class="form-group">
+                    <label for="task-title">Task Title</label>
+                    <input type="text" id="task-title" class="form-control" placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label for="task-description">Description</label>
+                    <textarea id="task-description" class="form-control" rows="3" placeholder="Enter task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="task-priority">Priority</label>
+                    <select id="task-priority" class="form-control">
+                        <option value="low">Low</option>
+                        <option value="medium" selected>Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-category">Category</label>
+                    <select id="task-category" class="form-control">
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="health">Health</option>
+                        <option value="study">Study</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="task-due-date">Due Date</label>
+                    <input type="date" id="task-due-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="task-time">Time</label>
+                    <input type="time" id="task-time" class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Task</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Edit Task Modal -->
+    <div class="modal" id="edit-task-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Edit Task</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="edit-task-form">
+                <input type="hidden" id="edit-task-id">
+                <div class="form-group">
+                    <label for="edit-task-title">Task Title</label>
+                    <input type="text" id="edit-task-title" class="form-control" placeholder="Enter task title">
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-description">Description</label>
+                    <textarea id="edit-task-description" class="form-control" rows="3" placeholder="Enter task description"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-priority">Priority</label>
+                    <select id="edit-task-priority" class="form-control">
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-category">Category</label>
+                    <select id="edit-task-category" class="form-control">
+                        <option value="work">Work</option>
+                        <option value="personal">Personal</option>
+                        <option value="health">Health</option>
+                        <option value="study">Study</option>
+                        <option value="exercise">Exercise</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-due-date">Due Date</label>
+                    <input type="date" id="edit-task-due-date" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="edit-task-time">Time</label>
+                    <input type="time" id="edit-task-time" class="form-control">
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>User Profile</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="profile-info">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-name" id="profile-display-name">John Doe</div>
+                        <div class="profile-title" id="profile-display-title">Software Developer</div>
+                    </div>
+                </div>
+                <form id="profile-form">
+                    <div class="form-group">
+                        <label for="profile-name">Full Name</label>
+                        <input type="text" id="profile-name" class="form-control" placeholder="Enter your full name">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-email">Email</label>
+                        <input type="email" id="profile-email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-age">Age</label>
+                        <input type="number" id="profile-age" class="form-control" placeholder="Enter your age">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-title">Professional Title</label>
+                        <input type="text" id="profile-title" class="form-control" placeholder="Enter your professional title">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-company">Company</label>
+                        <input type="text" id="profile-company" class="form-control" placeholder="Enter your company name">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-phone">Phone Number</label>
+                        <input type="tel" id="profile-phone" class="form-control" placeholder="Enter your phone number">
+                    </div>
+                    <div class="form-group">
+                        <label for="profile-bio">Bio</label>
+                        <textarea id="profile-bio" class="form-control" rows="4" placeholder="Tell us about yourself"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline close-modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save Profile</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- Settings Modal -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>App Settings</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="form-group">
+                <h3>Theme Selection</h3>
+                <p>Choose from 20 different color themes:</p>
+                <div class="theme-grid">
+                    <!-- Theme options will be generated by JavaScript -->
+                </div>
+            </div>
+            <div class="form-group">
+                <h3>Notification Settings</h3>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="task-reminders" checked> Task Reminders
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" id="timer-notifications" checked> Timer Notifications
+                    </label>
+                </div>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-outline close-modal">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Theme definitions
+        const themes = [
+            { name: "Default", class: "default-theme", preview: "Default" },
+            { name: "Dark", class: "dark-theme", preview: "Dark" },
+            { name: "Nature", class: "nature-theme", preview: "Nature" },
+            { name: "Ocean", class: "ocean-theme", preview: "Ocean" },
+            { name: "Sunset", class: "sunset-theme", preview: "Sunset" },
+            { name: "Forest", class: "forest-theme", preview: "Forest" },
+            { name: "Berry", class: "berry-theme", preview: "Berry" },
+            { name: "Coffee", class: "coffee-theme", preview: "Coffee" },
+            { name: "Royal", class: "royal-theme", preview: "Royal" },
+            { name: "Mint", class: "mint-theme", preview: "Mint" },
+            { name: "Coral", class: "coral-theme", preview: "Coral" },
+            { name: "Lavender", class: "lavender-theme", preview: "Lavender" },
+            { name: "Sky", class: "sky-theme", preview: "Sky" },
+            { name: "Sunflower", class: "sunflower-theme", preview: "Sunflower" },
+            { name: "Grape", class: "grape-theme", preview: "Grape" },
+            { name: "Emerald", class: "emerald-theme", preview: "Emerald" },
+            { name: "Ruby", class: "ruby-theme", preview: "Ruby" },
+            { name: "Amber", class: "amber-theme", preview: "Amber" },
+            { name: "Slate", class: "slate-theme", preview: "Slate" },
+            { name: "Rose", class: "rose-theme", preview: "Rose" }
+        ];
+
+        // Additional theme styles
+        const additionalStyles = `
+            .royal-theme {
+                --primary: #6A0DAD;
+                --primary-light: #8A2BE2;
+                --secondary: #FFD700;
+                --accent: #4B0082;
+                --light: #F8F4FF;
+                --dark: #2C003E;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F8F4FF;
+                --card-bg: white;
+                --text-color: #2C003E;
+                --border-color: #E9D8FD;
+            }
+            
+            .mint-theme {
+                --primary: #0D9488;
+                --primary-light: #14B8A6;
+                --secondary: #F59E0B;
+                --accent: #10B981;
+                --light: #F0FDFA;
+                --dark: #134E4A;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F0FDFA;
+                --card-bg: white;
+                --text-color: #134E4A;
+                --border-color: #CCFBF1;
+            }
+            
+            .coral-theme {
+                --primary: #FF7F50;
+                --primary-light: #FFA07A;
+                --secondary: #40E0D0;
+                --accent: #FF6347;
+                --light: #FFF5F5;
+                --dark: #8B4513;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #FFF5F5;
+                --card-bg: white;
+                --text-color: #8B4513;
+                --border-color: #FED7D7;
+            }
+            
+            .lavender-theme {
+                --primary: #967BB6;
+                --primary-light: #B19CD9;
+                --secondary: #FFB6C1;
+                --accent: #D8BFD8;
+                --light: #F8F4FF;
+                --dark: #4B0082;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F8F4FF;
+                --card-bg: white;
+                --text-color: #4B0082;
+                --border-color: #E9D8FD;
+            }
+            
+            .sky-theme {
+                --primary: #87CEEB;
+                --primary-light: #B0E2FF;
+                --secondary: #FFA500;
+                --accent: #4682B4;
+                --light: #F0F8FF;
+                --dark: #191970;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F0F8FF;
+                --card-bg: white;
+                --text-color: #191970;
+                --border-color: #BFEFFF;
+            }
+            
+            .sunflower-theme {
+                --primary: #FFD700;
+                --primary-light: #FFEC8B;
+                --secondary: #FF6347;
+                --accent: #FFA500;
+                --light: #FFFDE7;
+                --dark: #8B7500;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #FFFDE7;
+                --card-bg: white;
+                --text-color: #8B7500;
+                --border-color: #FFF9C4;
+            }
+            
+            .grape-theme {
+                --primary: #6B5B95;
+                --primary-light: #8B7BAA;
+                --secondary: #D291BC;
+                --accent: #955251;
+                --light: #F8F4FF;
+                --dark: #3D2C5A;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F8F4FF;
+                --card-bg: white;
+                --text-color: #3D2C5A;
+                --border-color: #E9D8FD;
+            }
+            
+            .emerald-theme {
+                --primary: #50C878;
+                --primary-light: #7CFC00;
+                --secondary: #FF7F50;
+                --accent: #008080;
+                --light: #F0FFF0;
+                --dark: #006400;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F0FFF0;
+                --card-bg: white;
+                --text-color: #006400;
+                --border-color: #D1FFBD;
+            }
+            
+            .ruby-theme {
+                --primary: #E0115F;
+                --primary-light: #FF69B4;
+                --secondary: #FFD700;
+                --accent: #B22222;
+                --light: #FFF0F5;
+                --dark: #800020;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #FFF0F5;
+                --card-bg: white;
+                --text-color: #800020;
+                --border-color: #FFD1DC;
+            }
+            
+            .amber-theme {
+                --primary: #FFBF00;
+                --primary-light: #FFD700;
+                --secondary: #FF7F50;
+                --accent: #FF8C00;
+                --light: #FFF8E1;
+                --dark: #FF8C00;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #FFF8E1;
+                --card-bg: white;
+                --text-color: #FF8C00;
+                --border-color: #FFECB3;
+            }
+            
+            .slate-theme {
+                --primary: #708090;
+                --primary-light: #7D8B9A;
+                --secondary: #A9A9A9;
+                --accent: #2F4F4F;
+                --light: #F8F9FA;
+                --dark: #2F4F4F;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #F8F9FA;
+                --card-bg: white;
+                --text-color: #2F4F4F;
+                --border-color: #E9ECEF;
+            }
+            
+            .rose-theme {
+                --primary: #FF007F;
+                --primary-light: #FF69B4;
+                --secondary: #FFD700;
+                --accent: #C71585;
+                --light: #FFF0F5;
+                --dark: #8B008B;
+                --gray: #6B7280;
+                --success: #10B981;
+                --warning: #F59E0B;
+                --danger: #EF4444;
+                --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+                --bg-color: #FFF0F5;
+                --card-bg: white;
+                --text-color: #8B008B;
+                --border-color: #FFD1DC;
+            }
+        `;
+
+        // Add additional styles to the document
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = additionalStyles;
+        document.head.appendChild(styleSheet);
+
+        // Initialize themes in settings
+        function initializeThemes() {
+            const themeGrid = document.querySelector('.theme-grid');
+            themeGrid.innerHTML = '';
+            
+            themes.forEach(theme => {
+                const themeOption = document.createElement('div');
+                themeOption.className = 'theme-option';
+                themeOption.setAttribute('data-theme', theme.class);
+                
+                // Create a preview element with the theme's primary color
+                const preview = document.createElement('div');
+                preview.className = 'theme-preview';
+                preview.textContent = theme.preview;
+                
+                // Apply the theme's primary color to the preview
+                preview.style.background = linear-gradient(135deg, var(--primary), var(--accent));
+                preview.style.color = 'white';
+                
+                const themeName = document.createElement('span');
+                themeName.textContent = theme.name;
+                themeName.style.fontSize = '12px';
+                themeName.style.fontWeight = '600';
+                
+                themeOption.appendChild(preview);
+                themeOption.appendChild(themeName);
+                
+                themeOption.addEventListener('click', () => {
+                    applyTheme(theme.class);// Update active state
+                    document.querySelectorAll('.theme-option').forEach(opt => {
+                        opt.classList.remove('active');
+                    });
+                    themeOption.classList.add('active');
+                });
+                
+                themeGrid.appendChild(themeOption);
+            });
+        }
+
+        // Apply theme function
+        function applyTheme(themeClass) {
+            document.body.className = themeClass;
+            localStorage.setItem('selectedTheme', themeClass);
+        }
+
+        // Load saved theme
+        function loadSavedTheme() {
+            const savedTheme = localStorage.getItem('selectedTheme') || 'default-theme';
+            applyTheme(savedTheme);
+        }
+
+        // Calendar functionality
+        let currentDate = new Date();
+        let selectedDate = new Date();
+        
+        function generateCalendar() {
+            const calendarGrid = document.querySelector('.calendar-grid');
+            const monthYearDisplay = document.getElementById('calendar-month-year');
+            
+            // Set month and year display
+            const monthNames = ["January", "February", "March", "April", "May", "June",
+                "July", "August", "September", "October", "November", "December"
+            ];
+            monthYearDisplay.textContent = ${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()};
+            
+            // Clear existing days (except headers)
+            while (calendarGrid.children.length > 7) {
+                calendarGrid.removeChild(calendarGrid.lastChild);
+            }
+            
+            // Get first day of month and days in month
+            const firstDay = new Date(currentDate.getFullYear(), currentDate.getMonth(), 1).getDay();
+            const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
+            
+            // Add empty days for the first week
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarGrid.appendChild(emptyDay);
+            }
+            
+            // Add days of the month
+            for (let i = 1; i <= daysInMonth; i++) {
+                const day = document.createElement('div');
+                day.className = 'calendar-day';
+                
+                // Check if this day is today
+                const today = new Date();
+                if (currentDate.getMonth() === today.getMonth() && 
+                    currentDate.getFullYear() === today.getFullYear() && 
+                    i === today.getDate()) {
+                    day.classList.add('active');
+                }
+                
+                // Check if this day has events
+                const dateStr = ${currentDate.getFullYear()}-${(currentDate.getMonth()+1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')};
+                if (hasEventsOnDate(dateStr)) {
+                    day.classList.add('has-event');
+                }
+                
+                day.textContent = i;
+                day.setAttribute('data-date', dateStr);
+                
+                // Add click event to select date
+                day.addEventListener('click', () => {
+                    // Remove active class from all days
+                    document.querySelectorAll('.calendar-day').forEach(d => {
+                        d.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked day
+                    day.classList.add('active');
+                    
+                    // Set selected date
+                    selectedDate = new Date(dateStr);
+                    
+                    // Update events list for selected date
+                    updateEventsList(dateStr);
+                    
+                    // Open add task modal for this date
+                    document.getElementById('task-date').value = dateStr;
+                    document.getElementById('task-due-date').value = dateStr;
+                    document.getElementById('task-modal').classList.add('active');
+                });
+                
+                calendarGrid.appendChild(day);
+            }
+        }
+        
+        function hasEventsOnDate(dateStr) {
+            return tasks.some(task => task.dueDate === dateStr);
+        }
+        
+        function updateEventsList(dateStr) {
+            const eventsContainer = document.getElementById('events-container');
+            const selectedDateEvents = document.getElementById('selected-date-events');
+            
+            // Format date for display
+            const date = new Date(dateStr);
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            selectedDateEvents.textContent = date.toLocaleDateString('en-US', options) + ' Events';
+            
+            // Clear existing events
+            eventsContainer.innerHTML = '';
+            
+            // Get tasks for this date
+            const dateTasks = tasks.filter(task => task.dueDate === dateStr);
+            
+            if (dateTasks.length === 0) {
+                eventsContainer.innerHTML = '<div class="event-item">No tasks for this date</div>';
+            } else {
+                dateTasks.forEach(task => {
+                    const eventItem = document.createElement('div');
+                    eventItem.className = 'event-item';
+                    eventItem.innerHTML = `
+                        <div class="event-time">${task.time}</div>
+                        <div class="event-title">${task.title}</div>
+                        <div class="event-category category-${task.category}">${task.category}</div>
+                    `;
+                    eventsContainer.appendChild(eventItem);
+                });
+            }
+        }// Calendar navigation
+        document.getElementById('prev-month').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() - 1);
+            generateCalendar();
+        });
+        
+        document.getElementById('next-month').addEventListener('click', () => {
+            currentDate.setMonth(currentDate.getMonth() + 1);
+            generateCalendar();
+        });
+        
+        // Task management
+        let tasks = [
+            { id: 1, title: 'Complete project proposal', description: 'Finish the quarterly project proposal document', completed: true, priority: 'high', category: 'work', dueDate: '2023-10-20', time: '09:00', trackedTime: 120, timerRunning: false, timerValue: 0 },
+            { id: 2, title: 'Prepare presentation for meeting', description: 'Create slides for the team meeting on Friday', completed: false, priority: 'high', category: 'work', dueDate: '2023-10-22', time: '10:30', trackedTime: 0, timerRunning: false, timerValue: 0 },
+            { id: 3, title: 'Buy groceries', description: 'Milk, eggs, bread, fruits and vegetables', completed: false, priority: 'medium', category: 'personal', dueDate: '2023-10-18', time: '18:00', trackedTime: 0, timerRunning: false, timerValue: 0 },
+            { id: 4, title: 'Call with client', description: 'Discuss project requirements and timeline', completed: false, priority: 'medium', category: 'work', dueDate: '2023-10-19', time: '15:00', trackedTime: 45, timerRunning: false, timerValue: 0 },
+            { id: 5, title: 'Gym workout', description: 'Cardio and strength training session', completed: true, priority: 'low', category: 'exercise', dueDate: '2023-10-17', time: '07:00', trackedTime: 60, timerRunning: false, timerValue: 0 },
+            { id: 6, title: 'Read book', description: 'Finish reading the current chapter', completed: false, priority: 'low', category: 'study', dueDate: '2023-10-21', time: '21:00', trackedTime: 0, timerRunning: false, timerValue: 0 }
+        ];
+        
+        let currentFilter = 'all';
+        
+        function renderTasks() {
+            const taskList = document.querySelector('.task-list');
+            taskList.innerHTML = '';
+            
+            // Filter tasks based on current filter
+            let filteredTasks = tasks;
+            if (currentFilter === 'pending') {
+                filteredTasks = tasks.filter(task => !task.completed);
+            } else if (currentFilter === 'completed') {
+                filteredTasks = tasks.filter(task => task.completed);
+            }
+            
+            filteredTasks.forEach(task => {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                taskItem.draggable = true;
+                taskItem.innerHTML = `
+                    <div class="task-checkbox ${task.completed ? 'checked' : ''}">
+                        ${task.completed ? '<i class="fas fa-check"></i>' : ''}
+                    </div>
+                    <div class="task-content">
+                        <div class="task-title ${task.completed ? 'completed' : ''}">${task.title}</div>
+                        <div class="task-meta">
+                            <span class="task-time"><i class="far fa-clock"></i> ${task.time}</span>
+                            <span class="task-priority priority-${task.priority}">${task.priority}</span>
+                            <span class="task-category">${task.category}</span>
+                        </div>
+                        <div class="time-tracker">
+                            <button class="time-tracker-btn start-tracking" data-task-id="${task.id}">
+                                <i class="fas fa-${task.timerRunning ? 'pause' : 'play'}-circle"></i> ${task.timerRunning ? 'Pause' : 'Start'} Tracking
+                            </button>
+                            <span class="tracked-time">${formatTime(task.trackedTime)} tracked</span>
+                        </div>
+                        <div class="task-timer ${task.timerRunning ? '' : 'hidden'}">
+                            <span class="task-timer-display">${formatTime(task.timerValue)}</span>
+                            <button class="time-tracker-btn stop-tracking" data-task-id="${task.id}">
+                                <i class="fas fa-stop-circle"></i> Stop
+                            </button>
+                        </div>
+                    </div>
+                    <div class="task-actions">
+                        <button class="task-action-btn edit-task" data-task-id="${task.id}"><i class="fas fa-edit"></i></button>
+                        <button class="task-action-btn delete-task" data-task-id="${task.id}"><i class="fas fa-trash"></i></button>
+                    </div>
+                `;
+                
+                // Add event listener to checkbox
+                const checkbox = taskItem.querySelector('.task-checkbox');
+                checkbox.addEventListener('click', () => {
+                    task.completed = !task.completed;
+                    updateStats();
+                    updateCalendar();
+                    // Update the task display without full re-render
+                    const taskTitle = taskItem.querySelector('.task-title');
+                    const taskCheckbox = taskItem.querySelector('.task-checkbox');
+                    
+                    if (task.completed) {
+                        taskTitle.classList.add('completed');
+                        taskCheckbox.classList.add('checked');
+                        taskCheckbox.innerHTML = '<i class="fas fa-check"></i>';
+                    } else {
+                        taskTitle.classList.remove('completed');
+                        taskCheckbox.classList.remove('checked');
+                        taskCheckbox.innerHTML = '';
+                    }
+                });
+                
+                // Add event listener to time tracker
+                const timeTracker = taskItem.querySelector('.start-tracking');
+                timeTracker.addEventListener('click', () => {
+                    toggleTimeTracking(task.id);
+                });
+                
+                // Add event listener to stop timer
+                const stopTimer = taskItem.querySelector('.stop-tracking');
+                if (stopTimer) {
+                    stopTimer.addEventListener('click', () => {
+                        stopTimeTracking(task.id);
+                    });
+                }
+                
+                // Add event listener to edit button
+                const editBtn = taskItem.querySelector('.edit-task');
+                editBtn.addEventListener('click', () => {
+                    openEditTaskModal(task.id);
+                });
+                
+                // Add event listener to delete button
+                const deleteBtn = taskItem.querySelector('.delete-task');
+                deleteBtn.addEventListener('click', () => {
+                    deleteTask(task.id);
+                });
+                
+                taskList.appendChild(taskItem);
+            });
+        }
+        
+        // Format time in seconds to MM:SS
+        function formatTime(seconds) {
+            const mins = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return ${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')};
+        }
+        
+        // Time tracking functionality
+        let timeTrackingIntervals = {};
+        
+        function toggleTimeTracking(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            
+            if (task.timerRunning) {
+                // Pause timer
+                clearInterval(timeTrackingIntervals[taskId]);
+                task.timerRunning = false;
+            } else {
+                // Start timer
+                task.timerRunning = true;
+                timeTrackingIntervals[taskId] = setInterval(() => {
+                    task.timerValue++;
+                    task.trackedTime++;
+                    
+                    // Update only the timer display without re-rendering the whole task
+                    const taskElement = document.querySelector(.task-item .start-tracking[data-task-id="${taskId}"]).closest('.task-item');
+                    if (taskElement) {
+                        const timerDisplay = taskElement.querySelector('.task-timer-display');
+                        const trackedTime = taskElement.querySelector('.tracked-time');
+                        const startButton = taskElement.querySelector('.start-tracking');
+                        
+                        if (timerDisplay) timerDisplay.textContent = formatTime(task.timerValue);
+                        if (trackedTime) trackedTime.textContent = ${formatTime(task.trackedTime)} tracked;
+                        if (startButton) {
+                            startButton.innerHTML = <i class="fas fa-pause-circle"></i> Pause Tracking;
+                        }
+                    }
+                    
+                    updateStats();
+                }, 1000);
+            }
+            
+            // Update the button text without full re-render
+            const taskElement = document.querySelector(.task-item .start-tracking[data-task-id="${taskId}"]).closest('.task-item');
+            if (taskElement) {
+                const startButton = taskElement.querySelector('.start-tracking');
+                const timerElement = taskElement.querySelector('.task-timer');
+                
+                if (task.timerRunning) {
+                    startButton.innerHTML = <i class="fas fa-pause-circle"></i> Pause Tracking;
+                    if (timerElement) timerElement.classList.remove('hidden');
+                } else {
+                    startButton.innerHTML = <i class="fas fa-play-circle"></i> Start Tracking;
+                    if (timerElement) timerElement.classList.add('hidden');
+                }
+            }
+            
+            showNotification(Time tracking ${task.timerRunning ? 'started' : 'paused'} for task);
+        }
+        
+        function stopTimeTracking(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            
+            clearInterval(timeTrackingIntervals[taskId]);
+            task.timerRunning = false;
+            task.timerValue = 0;
+            
+            // Update the UI without full re-render
+            const taskElement = document.querySelector(.task-item .start-tracking[data-task-id="${taskId}"]).closest('.task-item');
+            if (taskElement) {
+                const startButton = taskElement.querySelector('.start-tracking');
+                const timerElement = taskElement.querySelector('.task-timer');
+                
+                if (startButton) {
+                    startButton.innerHTML = <i class="fas fa-play-circle"></i> Start Tracking;
+                }
+                if (timerElement) {
+                    timerElement.classList.add('hidden');
+                }
+            }
+            
+            renderTasks();
+            showNotification('Time tracking stopped');
+        }
+        
+        // Edit task functionality
+        function openEditTaskModal(taskId) {
+            const task = tasks.find(t => t.id === taskId);
+            if (!task) return;
+            
+            document.getElementById('edit-task-id').value = task.id;
+            document.getElementById('edit-task-title').value = task.title;
+            document.getElementById('edit-task-description').value = task.description || '';
+            document.getElementById('edit-task-priority').value = task.priority;
+            document.getElementById('edit-task-category').value = task.category;
+            document.getElementById('edit-task-due-date').value = task.dueDate || '';
+            document.getElementById('edit-task-time').value = task.time || '';
+            
+            document.getElementById('edit-task-modal').classList.add('active');
+        }
+        
+        // Delete task functionality
+        function deleteTask(taskId) {
+            if (confirm('Are you sure you want to delete this task?')) {
+                // Stop timer if running
+                if (timeTrackingIntervals[taskId]) {
+                    clearInterval(timeTrackingIntervals[taskId]);
+                    delete timeTrackingIntervals[taskId];
+                }
+                
+                tasks = tasks.filter(task => task.id !== taskId);
+                renderTasks();
+                updateStats();
+                updateCalendar();
+                showNotification('Task deleted successfully');
+            }
+        }
+        
+        // Update calendar to reflect task changes
+        function updateCalendar() {
+            generateCalendar();
+        }
+        
+        // Pomodoro Timer functionality
+        let timerInterval = null;
+        let timerTime = 25 * 60; // 25 minutes in seconds
+        let timerRunning = false;
+        let currentMode = 'pomodoro';
+        
+        const timerDisplay = document.querySelector('.timer-text');
+        const timerCircle = document.querySelector('.timer-circle');
+        
+        const timerModes = {
+            pomodoro: 25 * 60,
+            'short-break': 5 * 60,
+            'long-break': 15 * 60
+        };
+        
+        function updateTimerDisplay() {
+            const minutes = Math.floor(timerTime / 60);
+            const seconds = timerTime % 60;
+            timerDisplay.textContent = ${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+            
+            // Update circle progress
+            const totalTime = timerModes[currentMode];
+            const progress = ((totalTime - timerTime) / totalTime) * 100;
+            timerCircle.style.background = conic-gradient(var(--primary) ${progress}%, var(--light) 0%);
+        }
+        
+        function startTimer() {
+            if (timerRunning) return;
+            
+            timerRunning = true;
+            timerInterval = setInterval(() => {
+                if (timerTime > 0) {
+                    timerTime--;
+                    updateTimerDisplay();
+                } else {
+                    clearInterval(timerInterval);
+                    timerRunning = false;
+                    showNotification(${currentMode.replace('-', ' ')} session completed!);
+                    // Auto-start next session
+                    if (currentMode === 'pomodoro') {
+                        switchMode('short-break');
+                        startTimer();
+                    } else {
+                        switchMode('pomodoro');
+                    }
+                }
+            }, 1000);
+        }
+        
+        function pauseTimer() {
+            clearInterval(timerInterval);
+            timerRunning = false;
+        }
+        
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            timerTime = timerModes[currentMode];
+            updateTimerDisplay();
+        }
+        
+        function switchMode(mode) {
+            currentMode = mode;
+            resetTimer();
+            
+            // Update active mode button
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            document.querySelector(.mode-btn[data-mode="${mode}"]).classList.add('active');
+        }
+        
+        // Stopwatch functionality
+        let stopwatchInterval = null;
+        let stopwatchTime = 0;
+        let stopwatchRunning = false;
+        let laps = [];
+        
+        const stopwatchDisplay = document.querySelector('.stopwatch-display');
+        const lapsContainer = document.getElementById('laps-container');
+        
+        function updateStopwatchDisplay() {
+            const hours = Math.floor(stopwatchTime / 3600);
+            const minutes = Math.floor((stopwatchTime % 3600) / 60);
+            const seconds = stopwatchTime % 60;
+            stopwatchDisplay.textContent = ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+        }
+        
+        function startStopwatch() {
+            if (stopwatchRunning) return;
+            
+            stopwatchRunning = true;
+            stopwatchInterval = setInterval(() => {
+                stopwatchTime++;
+                updateStopwatchDisplay();
+            }, 1000);
+        }
+        
+        function pauseStopwatch() {
+            clearInterval(stopwatchInterval);
+            stopwatchRunning = false;
+        }
+        
+        function resetStopwatch() {
+            clearInterval(stopwatchInterval);
+            stopwatchRunning = false;
+            stopwatchTime = 0;
+            updateStopwatchDisplay();
+            laps = [];
+            updateLapsDisplay();
+        }
+        
+        function lapStopwatch() {
+            laps.push(stopwatchTime);
+            updateLapsDisplay();
+        }
+        
+        function updateLapsDisplay() {
+            lapsContainer.innerHTML = '';
+            laps.forEach((lapTime, index) => {
+                const hours = Math.floor(lapTime / 3600);
+                const minutes = Math.floor((lapTime % 3600) / 60);
+                const seconds = lapTime % 60;
+                
+                const lapElement = document.createElement('div');
+                lapElement.style.padding = '8px';
+                lapElement.style.borderBottom = 1px solid var(--border-color);
+                lapElement.innerHTML = Lap ${index + 1}: ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')};
+                lapsContainer.appendChild(lapElement);
+            });
+        }// Update statistics
+        function updateStats() {
+            const totalTasks = tasks.length;
+            const completedTasks = tasks.filter(task => task.completed).length;
+            const pendingTasks = totalTasks - completedTasks;
+            const totalTrackedTime = tasks.reduce((total, task) => total + task.trackedTime, 0);
+            
+            document.getElementById('total-tasks').textContent = totalTasks;
+            document.getElementById('completed-tasks').textContent = completedTasks;
+            document.getElementById('pending-tasks').textContent = pendingTasks;
+            document.getElementById('focus-time').textContent = ${Math.floor(totalTrackedTime / 3600)}h ${Math.floor((totalTrackedTime % 3600) / 60)}m;
+        }
+        
+        // Profile functionality
+        let userProfile = {
+            name: "John Doe",
+            email: "john.doe@example.com",
+            age: 30,
+            title: "Software Developer",
+            company: "Tech Solutions Inc.",
+            phone: "+1 (555) 123-4567",
+            bio: "Passionate about creating efficient and user-friendly applications."
+        };
+        
+        function loadProfile() {
+            const savedProfile = localStorage.getItem('userProfile');
+            if (savedProfile) {
+                userProfile = JSON.parse(savedProfile);
+            }
+            
+            document.getElementById('profile-name').value = userProfile.name;
+            document.getElementById('profile-email').value = userProfile.email;
+            document.getElementById('profile-age').value = userProfile.age;
+            document.getElementById('profile-title').value = userProfile.title;
+            document.getElementById('profile-company').value = userProfile.company;
+            document.getElementById('profile-phone').value = userProfile.phone;
+            document.getElementById('profile-bio').value = userProfile.bio;
+            
+            document.getElementById('profile-display-name').textContent = userProfile.name;
+            document.getElementById('profile-display-title').textContent = userProfile.title;
+        }
+        
+        function saveProfile() {
+            userProfile.name = document.getElementById('profile-name').value;
+            userProfile.email = document.getElementById('profile-email').value;
+            userProfile.age = document.getElementById('profile-age').value;
+            userProfile.title = document.getElementById('profile-title').value;
+            userProfile.company = document.getElementById('profile-company').value;
+            userProfile.phone = document.getElementById('profile-phone').value;
+            userProfile.bio = document.getElementById('profile-bio').value;
+            
+            localStorage.setItem('userProfile', JSON.stringify(userProfile));
+            
+            document.getElementById('profile-display-name').textContent = userProfile.name;
+            document.getElementById('profile-display-title').textContent = userProfile.title;
+            
+            showNotification('Profile updated successfully!');
+        }
+        
+        // Add new task
+        document.querySelector('.add-task-btn').addEventListener('click', () => {
+            document.getElementById('task-modal').classList.add('active');
+        });
+        
+        // Open profile modal
+        document.getElementById('profile-btn').addEventListener('click', () => {
+            loadProfile();
+            document.getElementById('profile-modal').classList.add('active');
+        });
+        
+        // Open settings modal
+        document.getElementById('settings-btn').addEventListener('click', () => {
+            document.getElementById('settings-modal').classList.add('active');
+        });
+        
+        // Close modal
+        document.querySelectorAll('.close-modal').forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.classList.remove('active');
+                });
+            });
+        });
+        
+        // Handle task form submission
+        document.getElementById('task-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const title = document.getElementById('task-title').value;
+            const description = document.getElementById('task-description').value;
+            const priority = document.getElementById('task-priority').value;
+            const category = document.getElementById('task-category').value;
+            const dueDate = document.getElementById('task-due-date').value;
+            const time = document.getElementById('task-time').value;
+            
+            if (title) {
+                const newTask = {
+                    id: tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1,
+                    title: title,
+                    description: description,
+                    completed: false,
+                    priority: priority,
+                    category: category,
+                    dueDate: dueDate,
+                    time: time || 'No time set',
+                    trackedTime: 0,
+                    timerRunning: false,
+                    timerValue: 0
+                };
+                
+                tasks.push(newTask);
+                document.getElementById('task-form').reset();
+                document.getElementById('task-modal').classList.remove('active');
+                renderTasks();
+                updateStats();
+                updateCalendar();
+                
+                // Show notification
+                showNotification('Task added successfully!');
+            }
+        });
+        
+        // Handle edit task form submission
+        document.getElementById('edit-task-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const taskId = parseInt(document.getElementById('edit-task-id').value);
+            const title = document.getElementById('edit-task-title').value;
+            const description = document.getElementById('edit-task-description').value;
+            const priority = document.getElementById('edit-task-priority').value;
+            const category = document.getElementById('edit-task-category').value;
+            const dueDate = document.getElementById('edit-task-due-date').value;
+            const time = document.getElementById('edit-task-time').value;
+            
+            if (title) {
+                const taskIndex = tasks.findIndex(task => task.id === taskId);
+                if (taskIndex !== -1) {
+                    tasks[taskIndex].title = title;
+                    tasks[taskIndex].description = description;
+                    tasks[taskIndex].priority = priority;
+                    tasks[taskIndex].category = category;
+                    tasks[taskIndex].dueDate = dueDate;
+                    tasks[taskIndex].time = time;
+                    
+                    document.getElementById('edit-task-modal').classList.remove('active');
+                    renderTasks();
+                    updateStats();
+                    updateCalendar();
+                    
+                    // Show notification
+                    showNotification('Task updated successfully!');
+                }
+            }
+        });
+        
+        // Handle profile form submission
+        document.getElementById('profile-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            saveProfile();
+            document.getElementById('profile-modal').classList.remove('active');
+        });
+        
+        // Filter tasks
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const filter = button.getAttribute('data-filter');
+                currentFilter = filter;
+                
+                document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                renderTasks();
+            });
+        });
+        
+        // Timer mode selection
+        document.querySelectorAll('.mode-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const mode = button.getAttribute('data-mode');
+                switchMode(mode);
+            });
+        });
+        
+        // Timer controls
+        document.getElementById('start-timer').addEventListener('click', startTimer);
+        document.getElementById('pause-timer').addEventListener('click', pauseTimer);
+        document.getElementById('reset-timer').addEventListener('click', resetTimer);
+        
+        // Stopwatch controls
+        document.getElementById('start-stopwatch').addEventListener('click', startStopwatch);
+        document.getElementById('pause-stopwatch').addEventListener('click', pauseStopwatch);
+        document.getElementById('reset-stopwatch').addEventListener('click', resetStopwatch);
+        document.getElementById('lap-stopwatch').addEventListener('click', lapStopwatch);
+        
+        // Show notification
+        function showNotification(message) {
+            const notification = document.querySelector('.notification');
+            const notificationMessage = notification.querySelector('.notification-message');
+            
+            notificationMessage.textContent = message;
+            notification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                notification.classList.add('hidden');
+            }, 3000);
+        }
+        
+        // Initialize the app
+        initializeThemes();
+        loadSavedTheme();
+        generateCalendar();
+        renderTasks();
+        updateStats();
+        updateTimerDisplay();
+        updateStopwatchDisplay();
+        loadProfile();
+        
+        // Simulate a notification after 2 seconds
+        setTimeout(() => {
+            showNotification('Team meeting starts in 15 minutes');
+        }, 2000);
+    </script><!-- Footer Styles -->
+<style>
+    .main-footer {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: var(--card-bg);
+        padding: 15px 20px;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        z-index: 100;
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+    }
+    
+    .copyright {
+        color: var(--text-color);
+        font-size: 14px;
+        font-weight: 500;
+    }
+    
+    .creator-info {
+        color: var(--text-color);
+        font-size: 14px;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 15px;
+    }
+    
+    .social-link {
+        color: var(--primary);
+        font-size: 18px;
+        transition: var(--transition);
+    }
+    
+    .social-link:hover {
+        color: var(--primary-light);
+        transform: translateY(-2px);
+    }
+    
+    /* Responsive adjustments for footer */
+    @media (max-width: 768px) {
+        .footer-content {
+            flex-direction: column;
+            gap: 10px;
+            text-align: center;
+        }
+        
+        .creator-info {
+            position: static;
+            transform: none;
+            order: 3;
+        }
+        
+        .copyright {
+            order: 1;
+        }
+        
+        .social-links {
+            order: 2;
+        }
+    }
+</style>
+
+  <!-- Footer HTML -->
+<footer class="main-footer">
+    <div class="footer-content">
+        <div class="copyright">
+            © 2025 Shalini Singh. All rights reserved.
+        </div>
+        <div class="creator-info">
+            Crafted with ❤ by Shalini Singh
+        </div>
+        <div class="social-links">
+            <a href="https://www.linkedin.com/in/shalini-singh-42a123298" target="_blank" class="social-link">
+                <i class="fab fa-linkedin"></i>
+            </a>
+            <a href="https://github.com/your-github-profile" target="_blank" class="social-link">
+                <i class="fab fa-github"></i>
+            </a>
+        </div>
+    </div>
+</footer>
+
+   
+    </script>
+</body>
+</html>
